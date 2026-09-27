@@ -1,0 +1,5 @@
+# Configuration GitHub Pages : fichiers de travail à NE PAS publier sur le site.
+# (Les dossiers commençant par « _ », comme _sources, sont déjà exclus automatiquement.)
+exclude:
+  - README.md
+  - .htaccess

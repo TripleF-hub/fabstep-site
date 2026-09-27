@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Image Open Graph FabStep (1200×630)</title>
+  <!-- Source de assets/img/og.png. Pour régénérer (macOS) :
+       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+         --window-size=1200,630 --screenshot=assets/img/og.png _sources/og.html -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+    .og {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      align-items: center;
+      gap: 40px;
+      height: 630px;
+      padding: 0 90px;
+      background: radial-gradient(circle at 80% 50%, rgba(171, 250, 61, 0.10), transparent 45%), #000;
+    }
+    .og .logo { width: 220px; }
+    .og h1 { margin-top: 40px; font-size: 104px; line-height: 0.98; letter-spacing: -0.03em; }
+    .og h1 em { color: var(--green); }
+    .og .rule { width: 460px; margin: 36px 0 28px; }
+    .og p { color: #b5b5b5; font-size: 27px; font-weight: 500; white-space: nowrap; }
+    .og .watch { width: 300px; }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <div>
+      <img class="logo" src="../assets/img/logo.svg" alt="fabstep" width="202" height="61">
+      <h1 class="display"><em>Tes pas.</em><br>Rien d'autre.</h1>
+      <hr class="rule">
+      <p>iPhone · Apple Watch — sans compte, sans pub</p>
+    </div>
+    <div class="watch"><div class="watch-screen">
+      <img src="../assets/img/watch-steps.webp" width="832" height="992" alt="">
+    </div></div>
+  </div>
+</body>
+</html>

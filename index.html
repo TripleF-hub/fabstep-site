@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FabStep — compteur de pas pour iPhone et Apple Watch</title>
+  <meta name="description" content="FabStep compte tes pas sur iPhone et Apple Watch : fréquence cardiaque en direct, calories, distance, préparation. Sans compte, sans publicité, sans abonnement, aucune donnée collectée.">
+  <link rel="canonical" href="https://fabstep.app/">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="FabStep">
+  <meta property="og:title" content="FabStep — tes pas, rien d'autre">
+  <meta property="og:description" content="Compteur de pas pour iPhone et Apple Watch. Sans compte, sans pub, sans abonnement, aucune donnée collectée.">
+  <meta property="og:url" content="https://fabstep.app/">
+  <meta property="og:image" content="https://fabstep.app/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FabStep : écran Apple Watch affichant les pas et la fréquence cardiaque">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FabStep — tes pas, rien d'autre">
+  <meta name="twitter:description" content="Compteur de pas pour iPhone et Apple Watch. Sans compte, sans pub, sans abonnement.">
+  <meta name="twitter:image" content="https://fabstep.app/assets/img/og.png">
+
+  <!-- Icônes -->
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <!-- Polices et capture du hero : préchargées car visibles dès l'ouverture -->
+  <link rel="preload" href="assets/fonts/inter-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Animations : script local, chargé sans bloquer l'affichage -->
+  <script src="/assets/js/fabstep-walker.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <!-- Pictogrammes réutilisés via <use> -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <!-- Cœur (repris de l'app) -->
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21.2s-8.8-5.1-8.8-11.6A4.9 4.9 0 0 1 12 6.7a4.9 4.9 0 0 1 8.8 2.9c0 6.5-8.8 11.6-8.8 11.6Z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- ===== En-tête (pilules) ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="pill brand" href="./" aria-label="FabStep, accueil">
+        <img src="assets/img/logo.svg" alt="fabstep" width="202" height="61">
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <ul>
+          <li><a class="pill" href="#fonctionnalites">Fonctionnalités</a></li>
+          <li><a class="pill" href="#apple-watch">Apple Watch</a></li>
+          <li><a class="pill" href="confidentialite.html">Confidentialité</a></li>
+          <li><a class="pill" href="assistance.html">Assistance</a></li>
+        </ul>
+      </nav>
+      <a class="pill pill--outline" href="#telecharger">Bientôt sur l'App Store</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" aria-labelledby="titre-hero">
+      <div class="container">
+        <!-- Marcheur officiel de l'app (composant <fabstep-walker>), décoratif -->
+        <fabstep-walker class="walker walker--hero" color="#ABFA3D" aria-hidden="true"></fabstep-walker>
+        <h1 class="display" id="titre-hero"><em>Tes pas.</em><br>Rien d'autre.</h1>
+        <p class="hero-sub">FabStep compte tes pas sur iPhone et Apple Watch, avec ton cœur en direct. Sans compte, sans pub, sans abonnement — et aucune donnée collectée.</p>
+        <div class="hero-cta">
+          <!-- TODO lien App Store — LE JOUR DE LA SORTIE, remplacer le <button> ci-dessous par le badge officiel
+               (fichier fourni par Apple, à ne pas modifier), en mettant le vrai identifiant de l'app :
+               <a class="store-badge" href="https://apps.apple.com/fr/app/fabstep/idXXXXXXXXXX">
+                 <img src="assets/img/badges/app-store-telecharger-noir.svg" alt="Télécharger dans l'App Store" width="127" height="40">
+               </a>
+               Avant la sortie, Apple interdit d'utiliser ce badge ou le logo Apple seul. -->
+          <button class="btn btn--light" type="button" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Bientôt sur l'App Store
+          </button>
+          <p class="hero-note">iPhone · Apple Watch (Ultra en priorité)</p>
+        </div>
+
+        <div class="hero-stage">
+          <!-- Colonne gauche : cartes de données (décoratives, valeurs des captures de l'app) -->
+          <div class="hero-side hero-side--left" aria-hidden="true">
+            <div class="stat-card">
+              <div class="sc-head"><span class="sc-title"><svg class="heart-beat" viewBox="0 0 24 24"><use href="#i-heart"/></svg>Cardio</span><span class="badge">En direct</span></div>
+              <div class="sc-value">93 <small>BPM</small></div>
+              <svg class="ecg ecg--mini" viewBox="0 0 240 56" fill="none" stroke-linejoin="round" stroke-linecap="round"><polyline class="ecg-base" points="0,32 34,32 40,26 46,32 58,32 64,4 72,52 78,32 104,32 110,26 116,32 128,32 134,4 142,52 148,32 174,32 180,26 186,32 198,32 204,4 212,52 218,32 240,32"/><polyline class="ecg-pulse" points="0,32 34,32 40,26 46,32 58,32 64,4 72,52 78,32 104,32 110,26 116,32 128,32 134,4 142,52 148,32 174,32 180,26 186,32 198,32 204,4 212,52 218,32 240,32"/></svg>
+              <div class="sc-foot"><span>Au repos</span><b>58 BPM</b></div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-head"><span class="sc-title">Objectif du jour</span><span class="badge">Atteint</span></div>
+              <div class="sc-goal">
+                <div class="ring">
+              <svg viewBox="0 0 64 64"><circle class="ring-track" cx="32" cy="32" r="27"/><circle class="ring-val" cx="32" cy="32" r="27"/></svg>
+              <fabstep-walker class="walker walker--ring" color="#FFFFFF" aria-hidden="true"></fabstep-walker>
+            </div>
+                <div class="sc-value">114 <small>%</small></div>
+              </div>
+              <div class="sc-foot"><span>Pas</span><b>11 490 / 10 000</b></div>
+            </div>
+          </div>
+
+          <!-- Centre : iPhone + Apple Watch, inclinables en 3D à la souris -->
+          <div class="hero-devices">
+            <div class="devices-3d">
+          <!-- iPhone dessiné en CSS, avec la capture « Aujourd'hui » -->
+          <div class="phone">
+            <div class="phone-screen">
+              <img src="assets/img/iphone-1.webp" srcset="assets/img/iphone-1-390.webp 390w, assets/img/iphone-1.webp 780w" sizes="(min-width: 1000px) 270px, (min-width: 720px) 250px, 58vw"
+                   width="780" height="1695" fetchpriority="high"
+                   alt="Écran Aujourd'hui de FabStep sur iPhone : 11 490 pas, 114 % de l'objectif, cardio 93 BPM en direct, préparation 93 Haute, 8,73 km et 483 kcal">
+            </div>
+          </div>
+
+          <div class="watch"><div class="watch-screen" role="img" aria-label="Écran Pas et cœur : 99 908 pas, cœur qui bat, 86 battements par minute">
+              <div class="ws ws--steps" aria-hidden="true">
+                <span class="ws-time">18:17</span>
+                <fabstep-walker class="ws-walker" color="#ABFA3D"></fabstep-walker>
+                <span class="ws-steps" data-live="steps" data-start="99908">99 908</span>
+                <span class="ws-steps-label">Pas</span>
+                <span class="ws-rule"></span>
+                <svg class="ws-heart heart-beat" viewBox="0 0 24 24"><use href="#i-heart"/></svg>
+                <span class="ws-bpm" data-live="bpm" data-start="86">86</span>
+                <span class="ws-bpm-label">Fréquence cardiaque</span>
+              </div>
+              </div></div>
+            </div>
+          </div>
+
+          <!-- Colonne droite -->
+          <div class="hero-side hero-side--right" aria-hidden="true">
+            <div class="stat-card">
+              <div class="sc-head"><span class="sc-title">Préparation</span><span class="badge">Haute</span></div>
+              <div class="sc-value">93 <small>/ 100</small></div>
+              <div class="sc-meter"><i></i></div>
+              <div class="sc-foot"><span>Conseillé</span><b>12 000 pas</b></div>
+            </div>
+            <div class="stat-card">
+              <div class="sc-head"><span class="sc-title">Cette semaine</span><span class="badge badge--outline">4 / 6</span></div>
+              <div class="sc-value">55 722 <small>pas</small></div>
+              <div class="bars bars--week bars--mini">
+                <span class="goal-line"></span>
+                <i class="h50 low"></i><i class="h90 on"></i><i class="h80 on"></i><i class="h30 low"></i><i class="h100 on"></i><i class="h90 on"></i><i class="h10 empty"></i>
+              </div>
+              <div class="sc-foot"><span>Moyenne / jour</span><b>9 287</b></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bandeau de preuves -->
+        <ul class="hero-proof">
+          <li><b>0</b><span>compte</span></li>
+          <li><b>0</b><span>publicité</span></li>
+          <li><b>0</b><span>abonnement</span></li>
+          <li><b>100 %</b><span>sur tes appareils</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Fonctionnalités (grille bento, valeurs reprises de l'app) ===== -->
+    <section class="section" id="fonctionnalites" aria-labelledby="titre-fonctions">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Fonctionnalités</p>
+          <h2 class="section-title display" id="titre-fonctions"><em>L'essentiel,</em> en grand.</h2>
+          <p class="section-lead">Des chiffres lisibles d'un coup d'œil. Pas de menus à rallonge, pas de réseau social.</p>
+        </div>
+
+        <ul class="bento">
+          <!-- 1. Pas en temps réel -->
+          <li class="tile tile--wide" data-reveal>
+            <div>
+              <h3>Pas en temps réel</h3>
+              <p>Le capteur de mouvement fait défiler le compteur pendant que tu marches, sans attendre.</p>
+            </div>
+            <div class="viz" aria-hidden="true">
+              <div class="viz-num"><span data-count="11490">11 490</span> <small>pas aujourd'hui</small></div>
+              <div class="bars">
+                <i class="h10"></i><i class="h20"></i><i class="h60 on"></i><i class="h40 on"></i><i class="h30 on"></i><i class="h80 on"></i>
+                <i class="h50 on"></i><i class="h30 on"></i><i class="h100 on"></i><i class="h70 on"></i><i class="h20"></i><i class="h10"></i>
+              </div>
+              <div class="bars-legend"><span>6 h</span><span>12 h</span><span>18 h</span></div>
+            </div>
+          </li>
+
+          <!-- 2. Cœur en direct -->
+          <li class="tile d1" data-reveal>
+            <div>
+              <h3>Cœur en direct</h3>
+              <p>Ta fréquence cardiaque arrive de l'Apple Watch en continu, avec un cœur qui bat à ton rythme.</p>
+            </div>
+            <div class="viz" aria-hidden="true">
+              <div class="viz-num"><span class="hr-now"><svg class="heart-beat" viewBox="0 0 24 24"><use href="#i-heart"/></svg>93</span> <span class="badge">En direct</span></div>
+              <svg class="ecg" viewBox="0 0 240 56" fill="none" stroke-linejoin="round" stroke-linecap="round">
+                <polyline class="ecg-base" points="0,32 34,32 40,26 46,32 58,32 64,4 72,52 78,32 104,32 110,26 116,32 128,32 134,4 142,52 148,32 174,32 180,26 186,32 198,32 204,4 212,52 218,32 240,32"/>
+                <polyline class="ecg-pulse" points="0,32 34,32 40,26 46,32 58,32 64,4 72,52 78,32 104,32 110,26 116,32 128,32 134,4 142,52 148,32 174,32 180,26 186,32 198,32 204,4 212,52 218,32 240,32"/>
+              </svg>
+              <div class="bars-legend"><span>BPM</span><span>au repos : 58</span></div>
+            </div>
+          </li>
+
+          <!-- 3. Calories et distance -->
+          <li class="tile" data-reveal>
+            <div>
+              <h3>Calories et distance</h3>
+              <p>Calories actives, distance et minutes d'exercice, calculées à partir des données de Santé.</p>
+            </div>
+            <div class="viz" aria-hidden="true">
+              <div class="stat-row">
+                <div><span class="sr-label">Calories actives</span><span class="badge">Objectif atteint</span></div>
+                <b><span data-count="483">483</span> <small>kcal</small></b>
+              </div>
+              <div class="stat-row">
+                <div><span class="sr-label">Distance</span><span class="badge badge--outline">Aujourd'hui</span></div>
+                <b><span data-count="8.73" data-decimals="2">8,73</span> <small>km</small></b>
+              </div>
+            </div>
+          </li>
+
+          <!-- 4. Objectif adaptatif et série (aplat vert) -->
+          <li class="tile tile--green d1" data-reveal>
+            <div>
+              <h3>Objectif adaptatif et série</h3>
+              <p>Selon ta forme du jour, FabStep te conseille un objectif. Et ta série de jours garde l'élan.</p>
+            </div>
+            <div aria-hidden="true">
+              <div class="streak"><span data-count="12000">12 000</span></div>
+              <div class="streak-label">pas conseillés aujourd'hui</div>
+              <div class="streak-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i class="off"></i></div>
+            </div>
+          </li>
+
+          <!-- 5. Préparation -->
+          <li class="tile d2" data-reveal>
+            <div>
+              <h3>Préparation</h3>
+              <p>Un score sur 100 à partir de ton sommeil, de ta VFC et de ta récupération.</p>
+            </div>
+            <div class="viz" aria-hidden="true">
+              <div class="gauge">
+                <svg viewBox="0 0 100 100" fill="none" stroke-width="8" stroke-linecap="round">
+                  <circle cx="50" cy="50" r="42" stroke="#2a2a2a"/>
+                  <circle class="gauge-val" cx="50" cy="50" r="42"/>
+                </svg>
+                <div class="g-center"><b data-count="93">93</b><span class="badge">Haute</span></div>
+              </div>
+              <ul class="factors">
+                <li><span>Sommeil</span><b>81 · Bon</b></li>
+                <li><span>VFC</span><b>52 ms · Équilibrée</b></li>
+                <li><span>Récupération</span><b>Récupéré</b></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- 6. Historique et widgets -->
+          <li class="tile tile--full" data-reveal>
+            <div>
+              <h3>Journal et widgets</h3>
+              <p>Ta semaine jour par jour, avec l'objectif en pointillés. Et tes pas sur l'écran d'accueil comme sur l'écran verrouillé.</p>
+              <div class="widgets" aria-hidden="true">
+                <div class="widget"><b>11 490</b><span>pas</span></div>
+                <div class="widget"><b>93</b><span>BPM</span></div>
+                <div class="pill widget--lock"><fabstep-walker class="walker walker--mini" color="#ABFA3D" paused></fabstep-walker> 11 490</div>
+              </div>
+            </div>
+            <div class="viz" aria-hidden="true">
+              <div class="viz-num"><span data-count="55722">55 722</span> <small>pas cette semaine</small></div>
+              <div class="bars bars--week">
+                <span class="goal-line"></span>
+                <i class="h50 low"></i><i class="h90 on"></i><i class="h80 on"></i><i class="h30 low"></i><i class="h100 on"></i><i class="h90 on"></i><i class="h10 empty"></i>
+              </div>
+              <div class="bars-legend"><span>Lu</span><span>Ma</span><span>Me</span><span>Je</span><span>Ve</span><span>Sa</span><span>Di</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Sur iPhone (captures de l'app) ===== -->
+    <section class="section section--tight" id="iphone" aria-labelledby="titre-iphone">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">iPhone</p>
+          <h2 class="section-title display" id="titre-iphone"><em>Taillée</em> pour l'iPhone.</h2>
+          <p class="section-lead">Un écran pour chaque question : où j'en suis, comment va mon cœur, suis-je en forme, et ma semaine ?</p>
+        </div>
+
+        <ul class="phone-gallery" tabindex="0" aria-label="Écrans de FabStep sur iPhone (faire défiler horizontalement)">
+          <li data-reveal>
+            <figure>
+              <div class="phone"><div class="phone-screen">
+                <img src="assets/img/iphone-2-390.webp" srcset="assets/img/iphone-2-390.webp 390w, assets/img/iphone-2.webp 780w" sizes="230px" width="780" height="1695" loading="lazy" decoding="async"
+                     alt="Mode plein écran : anneau vert complet, marcheur blanc, 11 493 pas, 114 % de l'objectif de 10 000 pas">
+              </div></div>
+              <figcaption><strong>Plein écran</strong><span>Un seul chiffre, en très grand.</span></figcaption>
+            </figure>
+          </li>
+          <li class="d1" data-reveal>
+            <figure>
+              <div class="phone"><div class="phone-screen">
+                <img src="assets/img/iphone-3-390.webp" srcset="assets/img/iphone-3-390.webp 390w, assets/img/iphone-3.webp 780w" sizes="230px" width="780" height="1695" loading="lazy" decoding="async"
+                     alt="Journal : histogramme de la semaine du 21 au 27 septembre, 55 722 pas et 42,35 km au total">
+              </div></div>
+              <figcaption><strong>Journal</strong><span>Ta semaine jour par jour, objectif en pointillés.</span></figcaption>
+            </figure>
+          </li>
+          <li class="d2" data-reveal>
+            <figure>
+              <div class="phone"><div class="phone-screen">
+                <img src="assets/img/iphone-4-390.webp" srcset="assets/img/iphone-4-390.webp 390w, assets/img/iphone-4.webp 780w" sizes="230px" width="780" height="1695" loading="lazy" decoding="async"
+                     alt="Fréquence cardiaque : courbe de la journée, repos 47 BPM, moyenne 63, maximum 135, et zones cardiaques">
+              </div></div>
+              <figcaption><strong>Fréquence cardiaque</strong><span>Ta journée, du sommeil aux zones d'effort.</span></figcaption>
+            </figure>
+          </li>
+          <li class="d3" data-reveal>
+            <figure>
+              <div class="phone"><div class="phone-screen">
+                <img src="assets/img/iphone-5-390.webp" srcset="assets/img/iphone-5-390.webp 390w, assets/img/iphone-5.webp 780w" sizes="230px" width="780" height="1695" loading="lazy" decoding="async"
+                     alt="Préparation à l'entraînement : score 93 sur 100, Haute, bien récupéré, objectif conseillé 12 000 pas">
+              </div></div>
+              <figcaption><strong>Préparation</strong><span>Un score sur 100 et un objectif conseillé.</span></figcaption>
+            </figure>
+          </li>
+        </ul>
+        <p class="scroll-hint" aria-hidden="true">Fais défiler →</p>
+      </div>
+    </section>
+
+    <!-- ===== Apple Watch (écrans issus des maquettes Figma) ===== -->
+    <section class="section" id="apple-watch" aria-labelledby="titre-watch">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <fabstep-walker class="walker walker--section" color="#ABFA3D" aria-hidden="true"></fabstep-walker>
+          <p class="eyebrow">Apple Watch</p>
+          <h2 class="section-title display" id="titre-watch"><em>Pensée</em> pour le poignet.</h2>
+          <p class="section-lead">Conçue d'abord pour l'Apple Watch Ultra : de grands chiffres, un seul geste par écran.</p>
+        </div>
+
+        <ul class="watch-gallery" tabindex="0" aria-label="Écrans de FabStep sur Apple Watch (faire défiler horizontalement)">
+          <li data-reveal>
+            <figure>
+              <div class="watch"><div class="watch-screen" role="img" aria-label="Écran Prêt : logo fabstep, bouton vert Lecture, puis compte à rebours 3, 2, 1">
+                  <div class="ws ws--ready" aria-hidden="true">
+                    <span class="ws-time">18:17</span>
+                    <img class="ws-logo" src="assets/img/logo.svg" alt="" width="202" height="61" loading="lazy">
+                    <span class="ws-group ws-ready-main"><span class="ws-btn"><svg viewBox="0 0 24 24"><path d="M8.5 5.8v12.4a.8.8 0 0 0 1.2.7l9.7-6.2a.8.8 0 0 0 0-1.4L9.7 5.1a.8.8 0 0 0-1.2.7Z" fill="#000"/></svg></span><span class="ws-ready-label">Prêt</span></span>
+                    <span class="ws-cd ws-cd--3">3</span>
+                    <span class="ws-cd ws-cd--2">2</span>
+                    <span class="ws-cd ws-cd--1">1</span>
+                  </div>
+              </div></div>
+              <figcaption><strong>Prêt</strong><span>Un appui, 3-2-1 avec bips, et c'est parti.</span></figcaption>
+            </figure>
+          </li>
+          <li class="d1" data-reveal>
+            <figure>
+              <div class="watch"><div class="watch-screen" role="img" aria-label="Écran Pas et cœur : 99 908 pas, cœur qui bat, 86 battements par minute">
+                  <div class="ws ws--steps" aria-hidden="true">
+                    <span class="ws-time">18:17</span>
+                    <fabstep-walker class="ws-walker" color="#ABFA3D"></fabstep-walker>
+                    <span class="ws-steps" data-live="steps" data-start="99908">99 908</span>
+                    <span class="ws-steps-label">Pas</span>
+                    <span class="ws-rule"></span>
+                    <svg class="ws-heart heart-beat" viewBox="0 0 24 24"><use href="#i-heart"/></svg>
+                    <span class="ws-bpm" data-live="bpm" data-start="86">86</span>
+                    <span class="ws-bpm-label">Fréquence cardiaque</span>
+                  </div>
+              </div></div>
+              <figcaption><strong>Pas et cœur</strong><span>Tes pas en grand, et un cœur qui bat au rythme mesuré.</span></figcaption>
+            </figure>
+          </li>
+          <li class="d2" data-reveal>
+            <figure>
+              <div class="watch"><div class="watch-screen" role="img" aria-label="Mise en pause par appui long : l'anneau vert se remplit autour du bouton Pause">
+                  <div class="ws ws--pause" aria-hidden="true">
+                    <span class="ws-time">18:17</span>
+                    <span class="ws-group ws-dim"><fabstep-walker class="ws-walker" color="#ABFA3D" paused></fabstep-walker><span class="ws-steps">99 908</span><span class="ws-steps-label">Pas</span><span class="ws-rule"></span><svg class="ws-heart heart-beat" viewBox="0 0 24 24"><use href="#i-heart"/></svg><span class="ws-bpm">86</span><span class="ws-bpm-label">Fréquence cardiaque</span></span>
+                    <span class="ws-ring"><svg viewBox="0 0 160 160"><circle class="ws-ring-track" cx="80" cy="80" r="74"/><circle class="ws-ring-val" cx="80" cy="80" r="74"/></svg></span>
+                    <span class="ws-btn"><svg viewBox="0 0 24 24"><rect x="6.5" y="5" width="4" height="14" rx="1.6" fill="#000"/><rect x="13.5" y="5" width="4" height="14" rx="1.6" fill="#000"/></svg></span>
+                  </div>
+              </div></div>
+              <figcaption><strong>Pause</strong><span>Un appui long sur l'écran met la séance en pause.</span></figcaption>
+            </figure>
+          </li>
+          <li data-reveal>
+            <figure>
+              <div class="watch"><div class="watch-screen" role="img" aria-label="Durée d'entraînement : chrono, distance et calories qui avancent">
+                  <div class="ws ws--workout" aria-hidden="true">
+                    <span class="ws-time">18:17</span>
+                    <span class="ws-w-label">Durée entraînement</span>
+                    <span class="ws-chrono" data-live="chrono" data-start="37">0:37</span>
+                    <span class="ws-rule--top"></span>
+                    <span class="ws-vrule"></span>
+                    <span class="ws-rule--bottom"></span>
+                    <span class="ws-dist" data-live="dist" data-start="0">0.00</span>
+                    <span class="ws-kcal" data-live="kcal" data-start="4178">4 178</span>
+                    <svg class="ws-pin" viewBox="0 0 24 34"><path d="M12 0C5.4 0 0 5.2 0 11.7 0 20.4 12 34 12 34s12-13.6 12-22.3C24 5.2 18.6 0 12 0Zm0 16.2a4.6 4.6 0 1 1 0-9.2 4.6 4.6 0 0 1 0 9.2Z"/></svg>
+                    <svg class="ws-fire" viewBox="0 0 24 24"><path d="M12 23c-4.4 0-8-3.2-8-7.6 0-3 1.6-5.3 3.4-7 .5-.4 1.3 0 1.2.7-.2 1.5.3 2.8 1.4 3.3-.2-3.9 1.4-7.4 4.7-9.9.5-.4 1.2 0 1.2.6.1 3.2 1.6 5 3 6.9 1.4 1.9 3.1 3.7 3.1 6.4C20 19.8 16.4 23 12 23Zm0-2.4c1.8 0 3.2-1.3 3.2-3 0-2-1.6-2.9-2.6-4.6-.9 1.4-3.8 2.6-3.8 4.6 0 1.7 1.4 3 3.2 3Z"/></svg>
+                    <span class="ws-dist-label">Distance</span>
+                    <span class="ws-kcal-label">Calories</span>
+                  </div>
+              </div></div>
+              <figcaption><strong>Entraînement</strong><span>Chrono, distance et calories de ta marche.</span></figcaption>
+            </figure>
+          </li>
+          <li class="d1" data-reveal>
+            <figure>
+              <div class="watch"><div class="watch-screen" role="img" aria-label="Préparation : score 82, niveau Haute, 4 h 53 de sommeil">
+                  <div class="ws ws--readiness" aria-hidden="true">
+                    <span class="ws-time">18:17</span>
+                    <span class="ws-r-label">Préparation</span>
+                    <span class="ws-score" data-count="82">82</span>
+                    <span class="ws-rule--ready"></span>
+                    <span class="ws-level">Haute</span>
+                    <svg class="ws-moon" viewBox="0 0 24 24"><path d="M20.5 14.6A8.6 8.6 0 1 1 9.4 3.5a7 7 0 0 0 11.1 11.1Z"/></svg>
+                    <span class="ws-sleep">4h53</span>
+                  </div>
+              </div></div>
+              <figcaption><strong>Préparation</strong><span>Ton état du jour selon le sommeil, la VFC et la FC au repos.</span></figcaption>
+            </figure>
+          </li>
+          <li class="d2" data-reveal>
+            <figure>
+              <div class="watch"><div class="watch-screen" role="img" aria-label="Historique : aujourd'hui 102 530 pas, puis la liste des jours précédents qui défile">
+                  <div class="ws ws--history" aria-hidden="true">
+                    <span class="ws-time">18:18</span>
+                    <span class="ws-today-label">Aujourd’hui</span>
+                    <span class="ws-today" data-live="steps" data-start="102530">102 530</span>
+                    <div class="ws-list"><div class="ws-list-inner"><div class="ws-row">Ven. 25<b>102 530</b></div><div class="ws-row">Jeu. 24<b>98 658</b></div><div class="ws-row">Mer. 23<b>254 879</b></div><div class="ws-row">Mar. 22<b>87 412</b></div><div class="ws-row">Lun. 21<b>91 305</b></div><div class="ws-row">Dim. 20<b>76 540</b></div></div></div>
+                  </div>
+              </div></div>
+              <figcaption><strong>Historique</strong><span>Aujourd'hui et les 7 derniers jours, sans sortir ton iPhone.</span></figcaption>
+            </figure>
+          </li>
+        </ul>
+        <p class="scroll-hint" aria-hidden="true">Fais défiler →</p>
+      </div>
+    </section>
+
+    <!-- ===== Confidentialité : le « 0 » géant ===== -->
+    <section class="section" id="donnees" aria-labelledby="titre-donnees">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Confidentialité</p>
+          <h2 class="section-title display" id="titre-donnees"><em>Tes données</em> restent chez toi.</h2>
+          <p class="section-lead">Tout est calculé sur ton iPhone et ta montre. Rien ne part ailleurs.</p>
+        </div>
+
+        <div class="zero-panel" data-reveal>
+          <div>
+            <p class="zero" aria-hidden="true">0</p>
+            <p class="zero-caption"><span class="sr-only">Zéro </span>donnée collectée. <em>Aucune.</em></p>
+          </div>
+          <ul class="pledges">
+            <li class="pledge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 13.5-5.8M3 3l18 18"/></svg>
+              <h3>Pas de compte</h3>
+              <p>Ni inscription, ni e-mail, ni mot de passe. Tu ouvres l'app, elle compte.</p>
+            </li>
+            <li class="pledge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M3 3l18 18"/></svg>
+              <h3>Pas de serveur</h3>
+              <p>Aucune donnée envoyée sur Internet. L'iPhone et la montre se parlent directement.</p>
+            </li>
+            <li class="pledge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <h3>Lecture seule de Santé</h3>
+              <p>FabStep lit tes données Santé pour les afficher. Il n'y écrit rien et ne les partage avec personne.</p>
+            </li>
+          </ul>
+        </div>
+
+        <p class="pledges-link"><a href="confidentialite.html">Lire la politique de confidentialité complète</a></p>
+      </div>
+    </section>
+
+    <!-- ===== Appel à l'action (aplat vert, bonhomme qui traverse) ===== -->
+    <section class="container" id="telecharger" aria-labelledby="titre-cta">
+      <div class="cta-block" data-reveal>
+        <h2 class="display" id="titre-cta"><em>Prêt</em> à marcher ?</h2>
+        <p>FabStep arrive bientôt sur l'App Store, pour iPhone et Apple Watch. Sans compte, sans pub, sans abonnement.</p>
+        <!-- TODO lien App Store — le jour de la sortie, remplacer le <button> ci-dessous par :
+               <a class="store-badge" href="https://apps.apple.com/fr/app/fabstep/idXXXXXXXXXX">
+                 <img src="assets/img/badges/app-store-telecharger-noir.svg" alt="Télécharger dans l'App Store" width="127" height="40">
+               </a> -->
+        <button class="btn btn--dark" type="button" disabled>Bientôt sur l'App Store</button>
+        <div class="cta-track" aria-hidden="true">
+          <fabstep-walker class="walker walker--cta" color="#000000"></fabstep-walker>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Pied de page ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-panel" data-reveal>
+        <div class="footer-top">
+          <a class="brand-mini" href="./" aria-label="FabStep, accueil"><img src="assets/img/logo.svg" alt="fabstep" width="202" height="61" loading="lazy"></a>
+          <nav aria-label="Liens légaux">
+            <ul>
+              <li><a href="confidentialite.html">Confidentialité</a></li>
+              <li><a href="assistance.html">Assistance</a></li>
+              <li><a href="mentions-legales.html">Mentions légales</a></li>
+            </ul>
+          </nav>
+          <p>© 2026 Fabrice Fardeau · <a class="mail" href="mailto:contact@fabstep.app">contact@fabstep.app</a></p>
+        </div>
+        <p class="disclaimer">FabStep n'est pas un dispositif médical. Les mesures sont données à titre indicatif et ne remplacent pas l'avis d'un professionnel de santé.</p>
+        <div class="footer-wordmark" aria-hidden="true">
+          <img src="assets/img/logo.svg" alt="" width="202" height="61" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

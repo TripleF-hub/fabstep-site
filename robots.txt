@@ -1,0 +1,5 @@
+# Site public : tout est indexable
+User-agent: *
+Allow: /
+
+Sitemap: https://fabstep.app/sitemap.xml
