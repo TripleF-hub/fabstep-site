@@ -1,1 +1,3 @@
 .DS_Store
+# Configuration Apache, utile seulement pour un hébergement Hostinger (option B) : pas publiée sur GitHub Pages
+.htaccess
