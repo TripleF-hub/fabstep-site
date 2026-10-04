@@ -12,7 +12,8 @@ Aucun cookie, aucun traceur, aucune ressource externe : pas de bandeau cookies n
 ├── confidentialite.html     Politique de confidentialité (URL à donner à Apple)
 ├── assistance.html          Assistance (URL d'assistance à donner à Apple)
 ├── mentions-legales.html    Mentions légales (LCEN)
-├── 404.html                 Page d'erreur
+├── 404.html                 Page d'erreur (unique, bilingue)
+├── en/                      Version anglaise : index.html, privacy.html, support.html, legal.html
 ├── sitemap.xml · robots.txt
 ├── CNAME                    Domaine pour GitHub Pages (option A)
 ├── .htaccess                Configuration Apache pour Hostinger (option B)
@@ -30,6 +31,30 @@ URL à renseigner dans App Store Connect :
 - Politique de confidentialité : `https://fabstep.app/confidentialite.html`
 - URL d'assistance : `https://fabstep.app/assistance.html`
 - URL marketing : `https://fabstep.app/`
+
+Pour la fiche App Store en anglais : `https://fabstep.app/en/privacy.html`, `https://fabstep.app/en/support.html`
+et `https://fabstep.app/en/`.
+
+## Deux langues (français / anglais)
+
+Chaque page française a sa jumelle dans `en/`. **Toute modification de texte doit être faite dans les deux fichiers.**
+
+| Français | Anglais |
+|---|---|
+| `index.html` | `en/index.html` |
+| `confidentialite.html` | `en/privacy.html` |
+| `assistance.html` | `en/support.html` |
+| `mentions-legales.html` | `en/legal.html` |
+
+- Les pages se désignent mutuellement par les balises `<link rel="alternate" hreflang="…">` (pour Google) et par
+  le bouton `EN` / `FR` de l'en-tête. Aucune redirection automatique selon la langue du navigateur.
+- Les pages anglaises chargent les mêmes fichiers `../assets/` (une seule feuille de style, un seul script).
+- Le script lit `<html lang>` pour le format des nombres (`11 490` en français, `11,490` en anglais).
+- Les versions anglaises de la politique de confidentialité et des mentions légales sont des traductions de
+  courtoisie : la version française fait foi (c'est écrit en haut de ces pages).
+- **Reste à faire** : les captures iPhone affichées sur `en/index.html` sont celles de l'app en français.
+  Quand des captures en anglais existent, les enregistrer en `assets/img/iphone-N-en.webp` (+ `-390`)
+  et changer les `src` / `srcset` / `alt` dans `en/index.html`.
 
 ---
 
@@ -213,12 +238,18 @@ cwebp -q 85 capture.png -o assets/img/iphone-1.webp
 
 ## Le jour de la sortie sur l'App Store
 
+> **Fait le 4 octobre 2026** : l'app est en ligne (`id6816154235`), les badges et les liens sont actifs sur les pages
+> françaises et anglaises. Les étapes ci-dessous restent pour mémoire.
+
 1. Récupère l'adresse de la fiche (App Store Connect → ton app → « Afficher sur l'App Store ») :
    `https://apps.apple.com/fr/app/fabstep/id…`
 2. Dans `index.html`, aux deux commentaires `TODO lien App Store`, remplace le `<button … disabled>` par le
    bloc `<a class="store-badge" …>` fourni juste au-dessus en commentaire, avec le vrai identifiant `id…`.
 3. Dans l'en-tête de chaque page, remplace le lien « Bientôt sur l'App Store » (`href="…#telecharger"`)
    par l'adresse de la fiche, et son texte par « Télécharger ».
-4. Le badge officiel est déjà dans `assets/img/badges/` (fourni par Apple — ne pas le modifier, ne pas
+   Faire de même dans `en/index.html`, avec le badge **anglais** d'Apple (« Download on the App Store »),
+   à télécharger sur la page des règles marketing ci-dessous et à enregistrer sous
+   `assets/img/badges/app-store-download-black.svg` (ce fichier n'est pas encore dans le dépôt).
+4. Le badge officiel français est déjà dans `assets/img/badges/` (fourni par Apple — ne pas le modifier, ne pas
    l'animer). Tant que l'app n'est pas disponible, **ni ce badge ni le logo Apple ne doivent apparaître**
    (règles marketing d'Apple : https://developer.apple.com/app-store/marketing/guidelines/).

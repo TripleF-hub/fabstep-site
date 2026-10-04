@@ -12,9 +12,12 @@
   // Active les états « avant animation » définis dans le CSS (html.js …)
   root.classList.add("js");
 
+  // Format des nombres selon la langue de la page (<html lang="fr"> ou "en")
+  var locale = root.lang === "en" ? "en-US" : "fr-FR";
+
   /* ---------- 1. Compteurs qui défilent jusqu'à leur valeur ---------- */
   function format(value, decimals) {
-    return value.toLocaleString("fr-FR", {
+    return value.toLocaleString(locale, {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals
     });

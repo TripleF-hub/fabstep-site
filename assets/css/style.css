@@ -265,6 +265,35 @@ a:hover {
   padding-inline: 18px;
 }
 
+/* Sélecteur de langue (FR / EN) à côté du bouton App Store */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill--lang {
+  padding-inline: 14px;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+}
+
+/* Petits téléphones : pilules resserrées pour que logo, langue et bouton tiennent sur une ligne */
+@media (max-width: 519px) {
+  .header-inner {
+    gap: 8px;
+  }
+
+  .brand {
+    padding-inline: 14px;
+  }
+
+  .header-actions .pill {
+    padding-inline: 10px;
+    font-size: 0.8125rem;
+  }
+}
+
 .brand img {
   width: 84px;
   height: auto;
@@ -1245,7 +1274,8 @@ a:hover {
 }
 
 /* ---------- 13. Bloc d'appel vert ---------- */
-#telecharger {
+#telecharger,
+#download {
   margin-bottom: 88px;
 }
 
