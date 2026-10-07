@@ -6,3 +6,5 @@ https://fabstep.app/en/
 https://fabstep.app/en/privacy.html
 https://fabstep.app/en/support.html
 https://fabstep.app/en/legal.html
+https://fabstep.app/mises-a-jour.html
+https://fabstep.app/en/updates.html

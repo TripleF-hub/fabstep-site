@@ -324,17 +324,31 @@ a:hover {
   font-size: 0.875rem;
 }
 
-/* Petits téléphones : 4 pilules en grille 2 × 2, toutes visibles */
+/* Petits téléphones : 6 pilules en grille 3 × 2, toutes visibles */
 @media (max-width: 519px) {
   .nav ul {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     overflow: visible;
   }
 
   .nav .pill {
     justify-content: center;
     width: 100%;
+    padding-inline: 4px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Petits ordinateurs : pilules resserrées pour que tout l'en-tête tienne sur une ligne */
+@media (min-width: 1000px) and (max-width: 1179px) {
+  .nav ul {
+    gap: 4px;
+  }
+
+  .nav .pill {
+    padding-inline: 8px;
+    font-size: 0.8125rem;
   }
 }
 
