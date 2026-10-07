@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Défi FabStep</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .duo { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; gap: 20px; max-width: 520px; margin: 0 auto; padding: 32px 24px; }
+    .duo h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); line-height: 1.05; margin: 0; }
+    .duo p { color: rgba(255,255,255,.65); margin: 0; line-height: 1.5; }
+    .duo .btn { display: block; text-align: center; background: #ABFA3D; color: #000; font-weight: 600; border-radius: 999px; padding: 16px 24px; text-decoration: none; }
+    .duo .alt { text-align: center; font-size: .9rem; }
+    .duo .alt a { color: #ABFA3D; }
+  </style>
+</head>
+<body>
+  <main class="duo">
+    <h1 id="title">Un défi t’attend sur FabStep.</h1>
+    <p id="text">Ouvre ce lien sur ton iPhone pour relever le défi à deux. Aucun compte : les pas s’échangent par message.</p>
+    <a class="btn" id="open" href="fabstep://duo">Ouvrir dans FabStep</a>
+    <p class="alt" id="alt">Pas encore l’app ? <a href="https://apps.apple.com/fr/app/fabstep/id6816154235">Télécharger FabStep</a></p>
+    <p class="alt" id="privacy">Les données du défi restent dans ce lien : elles ne sont envoyées à aucun serveur.</p>
+  </main>
+  <script>
+    (function () {
+      var en = (navigator.language || "fr").toLowerCase().indexOf("en") === 0;
+      var code = "";
+      var m = /[#&]d=([A-Za-z0-9_-]+)/.exec(location.hash);
+      if (m) code = m[1];
+      var name = "";
+      try {
+        var b64 = code.replace(/-/g, "+").replace(/_/g, "/");
+        while (b64.length % 4) b64 += "=";
+        var data = JSON.parse(atob(b64));
+        if (data && typeof data.name === "string") name = data.name.slice(0, 24);
+      } catch (e) {}
+      var t = document.getElementById("title");
+      var x = document.getElementById("text");
+      var o = document.getElementById("open");
+      var a = document.getElementById("alt");
+      var p = document.getElementById("privacy");
+      if (name) t.textContent = en ? name + " challenges you on FabStep." : name + " te défie sur FabStep.";
+      else t.textContent = en ? "A challenge is waiting on FabStep." : "Un défi t’attend sur FabStep.";
+      if (en) {
+        document.documentElement.lang = "en";
+        document.title = "FabStep challenge";
+        x.textContent = "Open this link on your iPhone to take on the challenge together. No account: steps are exchanged by message.";
+        o.textContent = "Open in FabStep";
+        a.textContent = "";
+        var l = document.createElement("a");
+        l.href = "https://apps.apple.com/us/app/fabstep/id6816154235";
+        l.textContent = "Download FabStep";
+        a.appendChild(document.createTextNode("Don’t have the app yet? "));
+        a.appendChild(l);
+        p.textContent = "The challenge data stays in this link: it is not sent to any server.";
+      }
+      if (code) o.href = "fabstep://duo?d=" + code;
+    })();
+  </script>
+</body>
+</html>
