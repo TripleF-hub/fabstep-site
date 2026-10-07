@@ -56,6 +56,21 @@ Chaque page française a sa jumelle dans `en/`. **Toute modification de texte do
   Quand des captures en anglais existent, les enregistrer en `assets/img/iphone-N-en.webp` (+ `-390`)
   et changer les `src` / `srcset` / `alt` dans `en/index.html`.
 
+## Communauté WhatsApp
+
+La section « Communauté » de l'accueil (`#communaute` / `#community`) contient trois liens d'invitation
+(`https://chat.whatsapp.com/…`), présents dans `index.html` **et** `en/index.html` :
+groupe francophone, groupe anglophone, et communauté seule (annonces, dans la note sous les cartes).
+
+Sur grand écran, chaque carte affiche un QR code : `assets/img/qr-communaute-fr.svg` et `qr-communaute-en.svg`.
+**Si un lien est réinitialisé dans WhatsApp**, le remplacer dans les deux pages et régénérer le QR code :
+
+```
+npx qrcode -t svg -q 2 -o assets/img/qr-communaute-fr.svg "https://chat.whatsapp.com/NOUVEAU_CODE"
+```
+
+La politique de confidentialité décrit cette communauté (section « Communauté WhatsApp ») : la tenir à jour.
+
 ---
 
 ## Prévisualiser en local

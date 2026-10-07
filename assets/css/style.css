@@ -1273,6 +1273,77 @@ a:hover {
   text-align: center;
 }
 
+/* ---------- 12 bis. Communauté WhatsApp (facultative, en dehors de l'app) ---------- */
+.community {
+  display: grid;
+  gap: 28px;
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+}
+
+.community-join {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.join-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 16px 14px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  background: #000;
+}
+
+/* Pastille du groupe : mêmes couleurs que les icônes des groupes dans WhatsApp */
+.join-avatar {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--screen);
+}
+
+.walker--join {
+  width: 34px;
+  height: 34px;
+}
+
+.join-card h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.join-card p {
+  color: var(--muted-aa);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.join-card .btn,
+.join-card .pill {
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+
+/* QR code : inutile sur téléphone (on y touche le bouton), affiché à partir de 1000px */
+.join-qr,
+.join-qr-hint {
+  display: none;
+}
+
+.community-note {
+  margin-top: 8px;
+  color: var(--muted-aa);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
 /* ---------- 13. Bloc d'appel vert ---------- */
 #telecharger,
 #download {
@@ -2574,6 +2645,11 @@ fabstep-walker {
     padding: 40px;
   }
 
+  .community {
+    grid-template-columns: 1fr 1fr;
+    padding: 40px;
+  }
+
   .cta-block {
     padding: 96px 40px;
   }
@@ -2662,8 +2738,31 @@ fabstep-walker {
     display: none;
   }
 
-  .zero-panel {
+  .zero-panel,
+  .community {
     padding: 56px;
+  }
+
+  .join-card {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .join-card .btn,
+  .join-card .pill {
+    grid-column: 1 / 3;
+  }
+
+  .join-qr {
+    display: block;
+    grid-column: 3;
+    grid-row: 1 / 3;
+    width: 96px;
+    height: 96px;
+    border-radius: 10px;
+  }
+
+  .join-qr-hint {
+    display: block;
   }
 }
 
